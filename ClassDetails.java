@@ -31,7 +31,7 @@ public class ClassDetails {
 		implementsList = clsint.getImplements();
 		relations = new HashMap<String, String[]>();
 		
-		GeneratedClasses.getInstance().updateClassMap(this.name, this);
+		GeneratedClass.getInstance().updateClassMap(this.name, this);
 
 	}
 
@@ -40,14 +40,28 @@ public class ClassDetails {
 		return this.name;
 	}
 	
-	public String getName(int i) {
-		String result = "";
-		if(this.isInterface){
-			result = Symbols.BOXOPEN + "(((interface)));" + this.name + Symbols.BOXCLOSE;
-		}else{
-			result = Symbols.BOXOPEN + this.name + Symbols.BOXCLOSE;
-		}
-		return result;
+	public String getClassOrInterfaceString() {
+		this.extendRelations();
+		this.implementRelations();
+		return classString;
 	}
 	
+	public void implementRelations(){
+		String strVar;
+		for(ClassOrInterfaceType t : implementsList){
+			strVar = t.getName();
+			String[] relations = {"-.-","^"};
+			this.relations.put(strVar, relations);
+		}
+		
+	}
+
+	public void extendRelations(){
+		String strVar;
+		for(ClassOrInterfaceType t : extendsList){
+			strVar = t.getName();
+			String[] relations = {"-","^"};
+			this.relations.put(strVar, relations);
+		}
+	}
 	
