@@ -53,5 +53,31 @@ public class GeneratedClass {
     public String joinClass(){
         return joinClass;
     }
+	private String joinClasses(){
+		
+		String dec = "Decorator";
+		String comp = "Component";
+		String temp = "[Decorator]-[(((interface)));Component],[Decorator]uses-.->[(((interface)));Component],";
+		String result = " ";
+		
+		ArrayList<ClassDetails> class = new ArrayList<ClassDetails>(classMap.values());
+		
+		for(ClassDetails cdfor1 : class){
+			result = result + cdfor1.getClassOrInterfaceString() + ",";
+		}
+		
+		for(ClassDetails cdfor2 : class){
+			String cdforName2 = cdfor2.getName();
+			
+			for(ClassDetails cdfor3 : class){
+				String cdforName3 = cdfor3.getName();
+				
+				if(!(cdforName2.equals(cdforName3))){
+						
+				}
+			}
+		}
+	}
 	
 }
+
