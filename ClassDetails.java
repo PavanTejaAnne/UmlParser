@@ -45,6 +45,47 @@ public class ClassDetails {
 		this.implementRelations();
 		return classString;
 	}
+
+	public String[] getRelationWith(String className) {
+		String[] result = {" ", " "};	
+		String[] relArray =	relations.get(className);
+		if(!(this.name.equals(className))){
+			if(relArray != null){
+				result = relArray;
+			}
+		}	
+		return result;
+	}
+
+
+	public void usesRelation(String incomingStr) {
+		String strVar = incomingStr;
+		String[] relations = {"uses","-.->"};
+		this.relations.put(strVar, relations);
+	}
+
+	public void assosCollection(String incomingStr) {
+		
+		String[] contents;
+		
+		contents = incomingStr.split("[< >]");
+		if(contents[0].contains("Collections")){
+			String strVar = contents[1];
+			String addConn = this.name + strVar;
+			GeneratedClass.genCls.addConnection(addConn);
+		}else{
+			System.out.println("Something is wrong!!");
+		}
+	}
+
+	
+	public void assosClass(String incomingString) {
+				
+			String strVar = incomingString;
+			String addConn = this.name + strVar;
+			GeneratedClass.genCls.addConnection(addConn);
+		
+	}
 	
 	public void implementRelations(){
 		String strVar;
@@ -64,4 +105,8 @@ public class ClassDetails {
 			this.relations.put(strVar, relations);
 		}
 	}
+
+
+
+}
 	
