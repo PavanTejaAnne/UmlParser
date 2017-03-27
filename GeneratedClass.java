@@ -73,6 +73,20 @@ public class GeneratedClass {
 				String cdforName3 = cdfor3.getName();
 				
 				if(!(cdforName2.equals(cdforName3))){
+					
+					String[] relationTo = cdfor2.getRelationWith(cdforName3);
+					String[] relationFrom = cdfor3.getRelationWith(cdforName2);
+					
+						if(!checkConnectionDone(cdforName3+cdforName2) && !(relationTo[0].equals(""))){						
+							result = result 
+									+cdfor2.getName(1)
+									+relationFrom[1]+relationTo[0]+relationTo[1]+cdfor3.getName(1)+",";
+							connectionsDone.add(cdforName2+cdforName3);
+						}
+						
+						if(cdforName2.equals(dec) && cdforName3.equals(comp)){
+							result = result + temp;
+						}
 						
 				}
 			}
