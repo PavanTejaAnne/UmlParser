@@ -82,9 +82,9 @@ public class ClassDetails {
 	public void assosClass(String incomingString) {
 				
 			String strVar = incomingString;
-			String addConn = this.name + strVar;
-			GeneratedClass.genCls.addConnection(addConn);
-		
+			String[] relations = {"-","1"};
+			this.relations.put(strVar, relations);
+
 	}
 	
 	public void implementRelations(){
