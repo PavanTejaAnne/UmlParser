@@ -71,8 +71,8 @@ public class ClassDetails {
 		contents = incomingStr.split("[< >]");
 		if(contents[0].contains("Collections")){
 			String strVar = contents[1];
-			String addConn = this.name + strVar;
-			GeneratedClass.genCls.addConnection(addConn);
+			String[] relations = {"-","0..*"};
+			this.relations.put(strVar, relations);
 		}else{
 			System.out.println("Something is wrong!!");
 		}
