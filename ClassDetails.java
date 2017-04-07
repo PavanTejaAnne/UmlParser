@@ -119,7 +119,78 @@ public class ClassDetails {
 		}
 	}
 
-
+@SuppressWarnings("rawtypes")
+	public void GetterSetter(){
+	
+		String varName;
+		char accessModifier;
+		MethodDetails method1, method2;
+		VariableDetails variable;
+		boolean flag = false;
+		
+		String findGet;
+		String findSet;
+		
+		Set variableS, methodS1, methodS2;
+		
+		Iterator variableITE, methodITE1, methodITE2;
+		
+		variableS = hashVar.entrySet();
+		variableITE = variableS.iterator();
+		
+		while(variableITE.hasNext()){
+			Map.Entry var = (Map.Entry) variableITE.next();
+			varName = (String) var.getKey();
+			variable =  (VariableDetails) var.getValue();
+		
+			accessModifier = variable.getVariableAccessModifier();
+			
+			if(accessModifier == '-'){
+			
+				char[] temp = varName.trim().toCharArray();
+	        	temp[0] = Character.toUpperCase(temp[0]);			
+			
+				findGet = "get" + new String(temp);
+			
+				methodS1 = hashMeth.entrySet();
+				methodITE1 = methodS1.iterator();
+			
+				while(methodITE1.hasNext()){
+					Map.Entry methMe1 = (Map.Entry) methodITE1.next();
+					method1 = (MethodDetails) methMe1.getValue();
+				
+				
+					if(method1.getMethodName().equals(findGet)){
+						findSet = "set" + new String(temp);
+					
+						methodS2 = hashMeth.entrySet();
+						methodITE2 = methodS2.iterator();
+					
+						while(methodITE2.hasNext()){
+							Map.Entry methMe2 = (Map.Entry) methodITE2.next();
+							method2 = (MethodDetails) methMe2.getValue();
+						
+							if(method2.getMethodName().equals(findSet)){
+								hashMeth.remove(methMe1.getKey());
+								hashMeth.remove(methMe2.getKey());
+								variable.setVariableAccessModifier('+');
+								flag = true;
+								break;
+							}
+						}
+									
+					}
+						if(flag){
+							break;
+						}
+					}
+				}
+		
+				if(flag){
+					break;
+				}
+			}	
+	}
 private void getClassString(){
 		
 		String boxOpen = Notations.BOXOPEN;
@@ -146,7 +217,7 @@ private void getClassString(){
 		List<VariableDetails> arrayVar = new ArrayList<VariableDetails>(hashVar.values());
 		
 		for(VariableDetails vDetails : arrayVar){
-			variableList = variableList + vDetails.getFullVariableString();
+			variableList = variableList + vDetails.getVariableString();
 		}
 		
 		if(!variableList.equals("")){
