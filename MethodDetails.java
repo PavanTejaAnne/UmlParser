@@ -27,7 +27,7 @@ public class MethodDetails {
 		return methodAccessModifier;
 	}
 
-	public String getFullMethodString(){
+	public String getMethodString(){
 		
 		String string = "";
 		string = methodAccessModifier + name + "(" + parameters +")" + methodReturnType + ";";
