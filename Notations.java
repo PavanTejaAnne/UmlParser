@@ -4,7 +4,9 @@ public class Notations {
   	
 	public static String BOXOPEN = 	"[";		 	
 	public static String BOXCLOSE = "]";   		   				
-	public static String SPACE =   " ";   
+	public static String VERTSLASH  = "|";   				
+	public static String SPACE =   " "; 
+	public static String LITO  = "|";  
 
     //brackets
 	public static String SQRBRACKET = "[]";
