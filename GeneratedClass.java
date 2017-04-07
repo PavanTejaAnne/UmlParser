@@ -91,6 +91,12 @@ public class GeneratedClass {
 				}
 			}
 		}
+		if(!(result.equals("")))
+		{
+		result = result.substring(0,result.length() - 1);
+		}
+		result =  Notations.URL + result; //Generate URL for tests
+		return result;
 	}
 	
 }
