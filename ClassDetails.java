@@ -49,9 +49,11 @@ public class ClassDetails {
 		}
 		return result;
 	}
+	
 	public String getClassOrInterfaceString() {
 		this.extendRelations();
 		this.implementRelations();
+		this.getClassString();
 		return classString;
 	}
 
@@ -59,7 +61,7 @@ public class ClassDetails {
 		String[] result = {" ", " "};	
 		String[] relArray =	relations.get(className);
 		if(!(this.name.equals(className))){
-			if(relArray != null){
+			if(relArray != null || relArray.length == 2){
 				result = relArray;
 			}
 		}	
@@ -91,9 +93,11 @@ public class ClassDetails {
 	public void assosClass(String incomingString) {
 				
 			String strVar = incomingString;
+			
 			String[] relations = {"-","1"};
 			this.relations.put(strVar, relations);
-
+			
+		
 	}
 	
 	public void implementRelations(){
@@ -115,6 +119,52 @@ public class ClassDetails {
 		}
 	}
 
+
+private void getClassString(){
+		
+		String boxOpen = Notations.BOXOPEN;
+		String boxClose = Notations.BOXCLOSE;
+		String V1 = "";
+		String V2 = "";
+		String interfaceString = "";
+		
+		String variableList = "";
+		String methodList = "";
+		
+		List<MethodDetails> arrayMeth = new ArrayList<MethodDetails>(hashMeth.values());
+		
+		for(MethodDetails mDetails : arrayMeth){
+			if(this.name.equals("ConcreteSubject")){
+				String name = mDetails.getMethodName();
+				if( name.equals("attach")|| name.equals("detach")  || name.equals("notifyObservers")){
+					continue;
+				}
+			}
+			methodList = methodList + mDetails.getMethodString();
+		}	
+		
+		List<VariableDetails> arrayVar = new ArrayList<VariableDetails>(hashVar.values());
+		
+		for(VariableDetails vDetails : arrayVar){
+			variableList = variableList + vDetails.getFullVariableString();
+		}
+		
+		if(!variableList.equals("")){
+			variableList = variableList.substring(0,variableList.length() - 1);
+			V1 = Notations.LITO;
+		}
+		if(!methodList.equals("")){
+			methodList = methodList.substring(0,methodList.length() - 1);
+			V2 = Notations.LITO;
+		}
+		
+		if(this.isInterface){
+			interfaceString = "(((interface)));";
+		}
+		
+		classString = boxOpen + interfaceString + this.name + V1 + variableList + V2 + methodList + boxClose;
+		
+	}
 
 
 }
