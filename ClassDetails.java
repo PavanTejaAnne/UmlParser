@@ -40,6 +40,15 @@ public class ClassDetails {
 		return this.name;
 	}
 	
+	public String getName(int i) {
+		String result = " ";
+		if(this.isInterface){
+			result = Notations.BOXOPEN + "(((interface)));" + this.name + Notations.BOXCLOSE;
+		}else{
+			result = Notations.BOXOPEN + this.name + Notations.BOXCLOSE;
+		}
+		return result;
+	}
 	public String getClassOrInterfaceString() {
 		this.extendRelations();
 		this.implementRelations();
