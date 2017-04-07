@@ -22,13 +22,15 @@ public class MethodDetails {
 	public String getname() {
 		return name;
 	}
+	
+	public char getMethodAccessModifier() {
+		return methodAccessModifier;
+	}
 
 	public String getFullMethodString(){
 		
 		String string = "";
-		
 		string = methodAccessModifier + name + "(" + parameters +")" + methodReturnType + ";";
-		
 		return string;
 	}
 
