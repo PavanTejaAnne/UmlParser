@@ -101,7 +101,7 @@ public class ClassDetails {
 		String strVar;
 		for(ClassOrInterfaceType t : extendsList){
 			strVar = t.getName();
-			String[] relations = {"-","^"};
+			String[] relations = {"-.-","^"};
 			this.relations.put(strVar, relations);
 		}
 	}
