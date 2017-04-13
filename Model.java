@@ -20,14 +20,6 @@ public class Models
 		}
 	}
 	
-	public <E> String adjustSqrBrackets(List<E> inputList) {
-		String result = " ";
-		
-		result = inputList.toString();
-		result = result.substring(1, result.length() - 1);
-		return result;
-	}
-	
 	public String convertParameters(String incomingString){
 		String result = " ";
 		
