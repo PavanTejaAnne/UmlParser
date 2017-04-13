@@ -2,7 +2,7 @@ package com.umlparser;
 import java.util.List;
 import com.github.javaparser.ast.AccessSpecifier;
 
-public class Models
+public class Model
  {
 
 	public static final char PUBLIC = '+';
