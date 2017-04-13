@@ -32,7 +32,6 @@ public class ClassDetails {
 		relations = new HashMap<String, String[]>();
 		
 		GeneratedClass.getInstance().updateClassMap(this.name, this);
-
 	}
 
 
@@ -54,6 +53,7 @@ public class ClassDetails {
 		this.extendRelations();
 		this.implementRelations();
 		this.getClassString();
+		this.GetterSetter();
 		return classString;
 	}
 
@@ -95,9 +95,7 @@ public class ClassDetails {
 			String strVar = incomingString;
 			
 			String[] relations = {"-","1"};
-			this.relations.put(strVar, relations);
-			
-		
+			this.relations.put(strVar, relations);	
 	}
 	
 	public void implementRelations(){
@@ -236,7 +234,6 @@ private void getClassString(){
 		classString = boxOpen + interfaceString + this.name + V1 + variableList + V2 + methodList + boxClose;
 		
 	}
-
 
 }
 	
