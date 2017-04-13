@@ -6,8 +6,12 @@ public class Notations {
 	public static String BOXCLOSE = "]";   		   				
 	public static String VERTSLASH  = "|";   				
 	public static String SPACE =   " "; 
-	public static String LITO  = "|";  
+	public static String LITO  = "|"; 
 
+	public static String INTEGER = "int";
+	public static String STRING = "String"; 
+    	public static String VOID = "void";
+	
     //brackets
 	public static String SQRBRACKET = "[]";
 	public static String ANGLEBRKTOPEN = "<";
