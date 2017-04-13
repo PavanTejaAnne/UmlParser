@@ -5,8 +5,8 @@ import com.github.javaparser.ast.AccessSpecifier;
 public class Models
  {
 
-	public final char PUBLIC = '+';
-	public final char PRIVATE = '-';
+	public static final char PUBLIC = '+';
+	public static final char PRIVATE = '-';
 	
 	
 	public char getAccessModifier(AccessSpecifier accessSpecifier){
@@ -18,6 +18,35 @@ public class Models
 		}else{
 			return '0';
 		}
+	}
+    public String buildProcessType(String string ,int integer, ClassDetails class) {
+		String result = "";
+		
+			if(string.contains(Notations.SQRBRACKETS)){
+				int index = string.indexOf('[');
+				string = string.substring(0, index);
+				string = string + Notations.ARRBRACKET;
+				result = string;
+				result=+result;
+			} else if (string.contains(Notations.ANGBRACKETOPEN)){
+				
+				class.assosCollection(string);
+				result = null;
+			} else{
+				result = string;
+				result=+result;
+			}		
+		
+		return result;
+	}
+	
+	
+	public <list> String adjustSqrBrackets(List<list> inputList) {
+		String result = " ";
+		
+		result = inputList.toString();
+		result = result.substring(1, result.length());
+		return result;
 	}
 	
 	public String convertParameters(String incomingString){
