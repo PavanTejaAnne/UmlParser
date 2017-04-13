@@ -22,19 +22,28 @@ public class Model
     public String buildProcessType(String string ,int integer, ClassDetails class) {
 		String result = "";
 		
-			if(string.contains(Notations.SQRBRACKETS)){
+			if(string.contains(Notations.SQRBRACKET)){
 				int index = string.indexOf('[');
 				string = string.substring(0, index);
 				string = string + Notations.ARRBRACKET;
 				result = string;
-				result=+result;
-			} else if (string.contains(Notations.ANGBRACKETOPEN)){
+				result = ":" + result;
+				
+			} else if(!(string.contains(Notations.INTEGER)) && !(string.contains(Notations.STRING))
+					&& !(string.contains(Notations.VOID))){
+				if(integer == 1){
+					
+					class.assosClass(string);
+					result = null;
+				}
+				
+			}else if (string.contains(Notations.ANGLEBRKTOPEN)){
 				
 				class.assosCollection(string);
 				result = null;
 			} else{
 				result = string;
-				result=+result;
+				result = ":" + result;
 			}		
 		
 		return result;
@@ -45,7 +54,7 @@ public class Model
 		String result = " ";
 		
 		result = inputList.toString();
-		result = result.substring(1, result.length());
+		result = result.substring(1, result.length() - 1);
 		return result;
 	}
 	
