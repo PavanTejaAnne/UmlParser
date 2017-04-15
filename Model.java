@@ -36,7 +36,13 @@ public class Model
 					class.assosClass(string);
 					result = null;
 				}
-				
+				if(integer == 2 && !string.equals("")){
+					String[] var = string.split(" ");
+					
+					class.implementRelations(var[0]);
+					
+					result = var[1]+":"+var[0];
+				}
 			}else if (string.contains(Notations.ANGLEBRKTOPEN)){
 				
 				class.assosCollection(string);
