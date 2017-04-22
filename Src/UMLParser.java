@@ -13,10 +13,12 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 @SuppressWarnings("rawtypes")
 public class UMLParser extends VoidVisitorAdapter {
 	
+
 	private CompilationUnit cUnit;
 	private Model model = new Model();
 	
 	ClassDetails cDetails;
+	
 
 	@SuppressWarnings("unchecked")
 	public UMLParser(String filePath) {
@@ -32,6 +34,8 @@ public class UMLParser extends VoidVisitorAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -41,7 +45,26 @@ public class UMLParser extends VoidVisitorAdapter {
 		super.visit(cid, obj);
 	}
 	
-	public void testRun(){
+	@Override
+	public void visit(ConstructorDeclaration cd, Object obj){
+		
+		String constant = "";
+		char constantAccessModifier;
+		String constantParameter;
+		
+
+		
+		constant = cd.getName();
+		constantAccessModifier = model.getAccessModifier(ModifierSet.getAccessSpecifier(cd.getModifiers()));
+		constantParameter = model.adjustSqrBrackets(cd.getParameters());
+		constantParameter = model.buildProcessType(constantParameter, 2, cDetails);
+		
+		if(constantAccessModifier == '+'){
+			MethodDetails mdetails = new MethodDetails(constant, constantAccessModifier, constantParameter, "");
+			cDetails.hashMeth.put(constant, mdetails);
+		}	
 		
 	}
+
+	
 }
