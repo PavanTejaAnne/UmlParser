@@ -65,6 +65,49 @@ public class UMLParser extends VoidVisitorAdapter {
 		}	
 		
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void visit(MethodDeclaration md, Object obj){
+		char methodAccessModifier;
+		String name = "";
+		String methodParameter = "";
+		String methodReturnType = "";
+		
+		name = md.getName();		
+		methodAccessModifier = model.getAccessModifier(ModifierSet.getAccessSpecifier(md.getModifiers()));
+		methodParameter = model.adjustSqrBrackets(md.getParameters());
+		methodParameter = model.buildProcessType(methodParameter, 2, cDetails);
+		methodReturnType = model.buildProcessType(md.getType().toString(),1, cDetails);
+		
+		if(methodAccessModifier == '+'){
+			MethodDetails mdetails = new MethodDetails(name, methodAccessModifier, methodParameter, methodReturnType);
+			cDetails.hashMeth.put(name, mdetails);
+		}	
+		super.visit(md, obj);
+	}
 
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void visit(FieldDeclaration fd, Object obj) {
+		
+		char variableAccessModifier;
+		String name = "";
+		String variableReturnType = "";
+		
+		variableAccessModifier = model.getAccessModifier(ModifierSet.getAccessSpecifier(fd.getModifiers()));
+		
+		name = model.adjustSqrBrackets(fd.getVariables());
+		variableReturnType = model.buildProcessType(fd.getType().toString(),1, cDetails);
+		
+		if(variableAccessModifier == '+' || variableAccessModifier == '-'){
+		VariableDetails vdet = new VariableDetails(variableAccessModifier, name, variableReturnType);
+		cDetails.hashVar.put(name, vdet);
+		}		
+		
+	    super.visit(fd, obj);
+	}
 	
 }
