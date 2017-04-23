@@ -223,11 +223,11 @@ private void getClassString(){
 		
 		if(!variableList.equals("")){
 			variableList = variableList.substring(0,variableList.length() - 1);
-			V1 = Notations.LITO;
+			V1 = Notations.VERTSLASH;
 		}
 		if(!methodList.equals("")){
 			methodList = methodList.substring(0,methodList.length() - 1);
-			V2 = Notations.LITO;
+			V2 = Notations.VERTSLASH;
 		}
 		
 		if(this.isInterface){
